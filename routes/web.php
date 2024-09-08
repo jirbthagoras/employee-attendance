@@ -17,15 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('user.home', ['user' => 'Jirb']);
 })
-    ->name('home');
+    ->name('home')->middleware(['onlyUser']);
 
 Route::get('/attend', function () {
     return view('user.login');
-});
+})
+->name('attend')->middleware(['onlyGuest']);;
 
 Route::controller(UserController::class)->group(function () {
 
-    Route::post('/attend', 'attend');
+    Route::post('/attend', 'attend')
+    ->middleware(['onlyGuest']);
     Route::post('/logout', 'logout');
 
 });

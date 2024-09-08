@@ -32,6 +32,7 @@ class UserServiceImpl implements UserService
             if($collection[0]->is_admin)
             {
                 session()->put('is_admin', true);
+                session()->put('is_login', true);
 
                 return 'Success';
             }
