@@ -25,11 +25,23 @@
 @endif
 
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+
+    <div class="row">
+
+        <form method="post" action="/logout">
+            @csrf
+            <button class="w-15 btn btn-lg btn-danger" type="submit">keluar</button>
+        </form>
+    </div>
+
     <div class="row align-items-center g-lg-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
             <h1 class="display-4 fw-bold lh-1 mb-3">{{ $user }}</h1>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
+
+            @if(session('is_admin'))
+
             <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" action="/add-employee">
                 @csrf
                 <div class="form-floating mb-3">
@@ -42,6 +54,8 @@
                 </div>
                 <button class="w-100 btn btn-lg btn-primary show_confirm" type="submit">Tambah Pegawai</button>
             </form>
+
+            @endif
         </div>
     </div>
     <div class="row align-items-right g-lg-5 py-5">

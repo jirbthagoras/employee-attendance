@@ -4,7 +4,7 @@ namespace App\Services\Impl;
 
 interface UserService
 {
-    public function attend(): void;
+    public function attend(string $nomor_pegawai, string $password);
 
     public function getUserAttendance();
 }
