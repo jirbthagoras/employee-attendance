@@ -14,35 +14,33 @@
 </head>
 <body>
 
-@include('swal.alert')
+@if(session('alert'))
+
+    @include('swal.alert', [
+    'title' => session('alert')['title'],
+    'text' => session('alert')['text'],
+    'icon' => session('alert')['icon']
+    ])
+
+@endif
 
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-
-    <div class="row">
-        <form method="post" action="/logout">
-            <button class="w-15 btn btn-lg btn-danger" type="submit">Keluar</button>
-        </form>
-    </div>
     <div class="row align-items-center g-lg-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 mb-3">John Doe</h1>
+            <h1 class="display-4 fw-bold lh-1 mb-3">{{ $user }}</h1>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
-            <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" action="/todolist">
+            <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" action="/add-employee">
                 @csrf
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="password" placeholder="todo">
+                    <input type="text" class="form-control" name="nomor_pegawai" placeholder="Nomor Pegawai" required>
                     <label for="todo">Nomor Pegawai</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="password" placeholder="todo">
+                    <input type="text" class="form-control" name="nama_pegawai" placeholder="Nama Pegawai" required>
                     <label for="todo">Nama Pegawai</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="password" placeholder="todo">
-                    <label for="todo">Password</label>
-                </div>
-                <button class="w-100 btn btn-lg btn-primary show_confirm" type="submit">Tambah User</button>
+                <button class="w-100 btn btn-lg btn-primary show_confirm" type="submit">Tambah Pegawai</button>
             </form>
         </div>
     </div>

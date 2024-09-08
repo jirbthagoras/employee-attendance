@@ -3,6 +3,7 @@ desc attendance;
 desc employee;
 
 select * from attendance;
+select * from employee;
 
 
 

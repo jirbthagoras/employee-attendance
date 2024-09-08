@@ -8,7 +8,9 @@ class UserServiceImpl implements UserService
 {
     public function attend(): void
     {
-        echo 'This Is attend function' . PHP_EOL;
+
+
+
     }
 
     public function getUserAttendance()

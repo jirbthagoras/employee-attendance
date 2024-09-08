@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_pegawai', 100)->nullable(false);
             $table->string('nomor_pegawai', 100)->nullable(false);
-            $table->string('password', 100)->nullable(false);
+            $table->string('password', 300)->nullable(false);
             $table->boolean('is_admin')->default(false);
         });
     }
