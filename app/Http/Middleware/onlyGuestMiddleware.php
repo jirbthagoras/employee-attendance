@@ -15,7 +15,7 @@ class onlyGuestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!session()->exists('is_login'))
+        if(!session()->exists('is_login') or !session()->exists('is_admin'))
         {
             return $next($request);
         }

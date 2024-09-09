@@ -28,10 +28,16 @@
 
     <div class="row">
 
-        <form method="post" action="/logout">
-            @csrf
-            <button class="w-15 btn btn-lg btn-danger" type="submit">keluar</button>
-        </form>
+        @if(session('is_admin'))
+
+            <form method="post" action="/logout">
+                @csrf
+                <button class="w-15 btn btn-lg btn-danger" type="submit">keluar</button>
+            </form>
+
+        @endif
+
+
     </div>
 
     <div class="row align-items-center g-lg-5 py-5">
