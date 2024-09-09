@@ -33,6 +33,7 @@ class UserServiceImpl implements UserService
             {
                 session()->put('is_admin', true);
                 session()->put('is_login', true);
+                session()->put('nama_pegawai', 'Admin');
 
                 return 'Success';
             }
@@ -47,6 +48,7 @@ class UserServiceImpl implements UserService
                 ]);
 
                 session()->put('is_login', true);
+                session()->put('nama_pegawai', $collection[0]->nama_pegawai);
 
                 return 'Success';
             } else {

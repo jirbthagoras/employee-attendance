@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('user.home', ['user' => 'Jirb']);
+    return view('user.home');
 })
     ->name('home')->middleware(['onlyUser']);
 
