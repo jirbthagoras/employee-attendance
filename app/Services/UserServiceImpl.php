@@ -27,6 +27,11 @@ class UserServiceImpl implements UserService
             ->where('nomor_pegawai', "=", $nomor_pegawai)
             ->get();
 
+        $attendance = DB::table('attendance')
+            ->where('employee_id', '=', $collection[0]->id)
+            ->where('tanggal', "=", Carbon::now('asia/jakarta')->format('d F Y'))
+            ->get();
+
         if($collection->isNotEmpty()){
 
             if($collection[0]->is_admin)
@@ -36,6 +41,15 @@ class UserServiceImpl implements UserService
                 session()->put('nama_pegawai', 'Admin');
 
                 return 'Admin';
+            }
+
+            if($attendance->isNotEmpty())
+            {
+                session()->put('is_login', true);
+                session()->put('nama_pegawai', $collection[0]->nama_pegawai);
+                session()->put('pegawai_id', $collection[0]->id);
+
+                return 'Already';
             }
 
             if(Hash::check($password, $collection[0]->password)){

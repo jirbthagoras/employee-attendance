@@ -26,6 +26,14 @@ class UserController extends Controller
         $result = $this->userService->attend($nomor_pegawai, $password);
 
         switch ($result){
+
+            case 'Already':
+                return redirect()->route('home')->with('alert', [
+                    'title' => "Absensi Gagal",
+                    'text' => "Anda sudah absen hari ini",
+                    'icon' => "warning",
+                ]);
+
             case 'Success':
                 return redirect()->route('home')->with('alert', [
                     'title' => "Success",

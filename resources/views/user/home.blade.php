@@ -28,14 +28,10 @@
 
     <div class="row">
 
-        @if(session('is_admin'))
-
             <form method="post" action="/logout">
                 @csrf
                 <button class="w-15 btn btn-lg btn-danger" type="submit">keluar</button>
             </form>
-
-        @endif
 
 
     </div>
