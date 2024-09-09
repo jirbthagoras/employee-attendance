@@ -44,6 +44,13 @@ class UserController extends Controller
                     'text' => "Akun tidak ditemukan, tidak bisa melanjutkan absen",
                     'icon' => "warning",
                 ]);
+
+            case 'Admin':
+                return redirect()->route('home')->with('alert', [
+                    'title' => "Login Sukses",
+                    'text' => "Selamat Datang Admin",
+                    'icon' => "success",
+                ]);
         }
 
     }
@@ -55,4 +62,11 @@ class UserController extends Controller
         return redirect()->route('attend');
     }
 
+
+    public function getUserAttendance()
+    {
+        $attendances = $this->userService->getUserAttendance();
+
+        return \response()->view('user.home', ['attendances' => $attendances, 'admin' => false]);
+    }
 }

@@ -39,4 +39,12 @@ class AdminController extends Controller
         ]);
     }
 
+    public function getAllAttendance()
+    {
+
+        $attendances = $this->adminService->getAllAttendance();
+
+        return \response()->view('user.home', ['attendances' => $attendances, 'admin' => true]);
+    }
+
 }

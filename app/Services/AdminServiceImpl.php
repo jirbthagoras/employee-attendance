@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use function Laravel\Prompts\select;
 
 class AdminServiceImpl implements AdminService
 {
@@ -26,7 +27,12 @@ class AdminServiceImpl implements AdminService
 
     public function getAllAttendance()
     {
-        echo 'This Is getAllAttendance function' . PHP_EOL;
+        $collection = DB::table('attendance')
+            ->join('employee', 'attendance.employee_id', '=', 'employee.id')
+            ->select(DB::raw('ROW_NUMBER() OVER (ORDER BY attendance.id) as number_row, employee.nama_pegawai, attendance.tanggal, attendance.jam, attendance.status'))
+        ->get();
+
+        return $collection;
     }
 
 }

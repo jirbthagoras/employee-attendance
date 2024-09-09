@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.home');
-})
-    ->name('home')->middleware(['onlyUser']);
+
+
+Route::controller(\App\Http\Controllers\HomeController::class)->group(function () {
+
+    Route::get('/', 'home')
+        ->name('home')->middleware(['onlyUser']);
+
+});
 
 Route::get('/attend', function () {
     return view('user.login');

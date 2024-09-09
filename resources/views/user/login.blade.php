@@ -31,11 +31,11 @@
             <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" action="/attend">
                 @csrf
                 <div class="form-floating mb-3">
-                    <input name="nomor_pegawai" type="text" class="form-control" id="user" placeholder="id">
+                    <input name="nomor_pegawai" type="text" class="form-control" id="user" placeholder="id" required>
                     <label for="user">Nomor Pegawai</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input name="password" type="password" class="form-control" id="password" placeholder="password">
+                    <input name="password" type="password" class="form-control" id="password" placeholder="password" required>
                     <label for="password">Password</label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Absen</button>

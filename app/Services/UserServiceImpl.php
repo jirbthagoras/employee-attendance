@@ -12,7 +12,7 @@ class UserServiceImpl implements UserService
     public function attend(string $nomor_pegawai, string $password)
     {
 
-        $startTime = Carbon::createFromTimeString('12:00:00', 'asia/jakarta');
+        $startTime = Carbon::createFromTimeString(env("START_TIME"), 'asia/jakarta');
         $checkInTime = Carbon::parse(Carbon::now( 'asia/jakarta'));
 
         if ($checkInTime->greaterThan($startTime)) {
@@ -35,7 +35,7 @@ class UserServiceImpl implements UserService
                 session()->put('is_login', true);
                 session()->put('nama_pegawai', 'Admin');
 
-                return 'Success';
+                return 'Admin';
             }
 
             if(Hash::check($password, $collection[0]->password)){
@@ -49,6 +49,7 @@ class UserServiceImpl implements UserService
 
                 session()->put('is_login', true);
                 session()->put('nama_pegawai', $collection[0]->nama_pegawai);
+                session()->put('pegawai_id', $collection[0]->id);
 
                 return 'Success';
             } else {
@@ -62,7 +63,12 @@ class UserServiceImpl implements UserService
 
     public function getUserAttendance()
     {
-        echo 'This Is getUserAttendance function' . PHP_EOL;
+        $collection = DB::table('attendance')
+            ->where('employee_id', '=', session()->get('pegawai_id'))
+            ->select(DB::raw('ROW_NUMBER() OVER (ORDER BY id) as number_row, tanggal, jam, status'))
+            ->get();
+
+        return $collection;
     }
 
 

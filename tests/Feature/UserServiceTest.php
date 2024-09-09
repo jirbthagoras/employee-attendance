@@ -34,4 +34,15 @@ class UserServiceTest extends TestCase
 
         assertTrue(true);
     }
+
+    public function testQuery()
+    {
+        $collection = DB::table('attendance')
+            ->where('employee_id', '=', 4)
+            ->select(DB::raw('ROW_NUMBER() OVER (ORDER BY id) as number_row, tanggal, jam, status'))
+            ->get();
+        var_dump($collection);
+    }
+
+
 }

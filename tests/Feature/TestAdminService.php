@@ -57,5 +57,14 @@ class TestAdminService extends TestCase
 
     }
 
+    public function testGetAllAttendance()
+    {
+
+        var_dump($this->adminService->getAllAttendance());
+
+        assertTrue(true);
+
+    }
+
 
 }

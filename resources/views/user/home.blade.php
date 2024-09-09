@@ -69,16 +69,42 @@
                     <th scope="col">#</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Jam</th>
-                    <th scope="col"></th>
+                    <th scope="col">Status</th>
                 </tr>
                 </thead>
                 <tbody>
+
+                @isset($attendances)
+
+                    @foreach($attendances as $items)
+
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Belajar Laravel Dasar</td>
-                    <td>9:30</td>
-                    <th style="color: red">terlambat</th>
+                    <th scope="row">{{$items->number_row}}</th>
+
+                    @if($admin)
+
+                        <td><b>{{$items->nama_pegawai}}</b></td>
+
+                    @endif
+
+                    <td><b>{{$items->tanggal}}</b></td>
+                    <td>{{$items->jam}}</td>
+
+                    @if($items->status == "Employee is on time")
+
+                        <th style="color: springgreen">{{$items->status}}</th>
+
+                    @else
+
+                        <th style="color: red">{{$items->status}}</th>
+
+                    @endif
+
                 </tr>
+
+                    @endforeach
+
+                @endisset
                 </tbody>
             </table>
         </div>
